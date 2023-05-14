@@ -16,11 +16,6 @@ class ChirpController extends Controller
         ]);
     }
 
-    public function create()
-    {
-        //
-    }
-
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
@@ -30,11 +25,6 @@ class ChirpController extends Controller
         $request->user()->chirps()->create($validated);
 
         return redirect(route('chirps.index'));
-    }
-
-    public function show(Chirp $chirp)
-    {
-        //
     }
 
     public function edit(Chirp $chirp): View
