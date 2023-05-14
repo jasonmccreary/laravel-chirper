@@ -32,9 +32,6 @@ class ChirpController extends Controller
         return redirect(route('chirps.index'));
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Chirp $chirp)
     {
         //
