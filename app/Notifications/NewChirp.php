@@ -29,6 +29,11 @@ class NewChirp extends Notification
             ->line('Thank you for using our application!');
     }
 
+    public function via(object $notifiable): array
+    {
+        return ['mail'];
+    }
+
     public function toArray(object $notifiable): array
     {
         return [

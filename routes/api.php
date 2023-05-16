@@ -19,5 +19,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/status', \App\Http\Controllers\Api\HealthCheck::class);
-Route::post('/loopback', \App\Http\Controllers\Api\Loopback::class);
+Route::post('/loopback', \App\Http\Controllers\Api\Loopback::class)->name('loopback');
 Route::apiResource('/chirps', \App\Http\Controllers\Api\ChirpController::class)->only('index', 'show');
