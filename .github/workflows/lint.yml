@@ -2,7 +2,7 @@ name: GitHub Actions Demo
 run-name: ${{ github.actor }} is checking for lint
 on: [ push ]
 jobs:
-  PHP:
+  lint:
     strategy:
       matrix:
         php: [ '8.2' ]

@@ -2,10 +2,19 @@ name: Test Suite
 run-name: ${{ github.actor }} is running the tests
 on: [ push ]
 jobs:
-  PHP:
+  test:
     strategy:
       matrix:
         php: [ '8.2' ]
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: yes
+          MYSQL_DATABASE: phptek_ci
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -21,3 +30,10 @@ jobs:
 
       - name: Run the test suite
         run: vendor/bin/phpunit
+        env:
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: ${{ job.services.mysql.ports['3306'] }}
+          DB_USERNAME: root
+          DB_PASSWORD: null
+          DB_DATABASE: phptek_ci
