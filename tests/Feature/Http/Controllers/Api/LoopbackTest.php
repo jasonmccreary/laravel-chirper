@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Http\Controllers\Api;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
@@ -20,12 +19,12 @@ class LoopbackTest extends TestCase
         $input = $this->faker->sentence();
 
         $response = $this->postJson(route('api.loopback'), [
-            'message' => $input
+            'message' => $input,
         ]);
 
         $response->assertOk();
         $response->assertExactJson([
-            'message' => $input
+            'message' => $input,
         ]);
     }
 }

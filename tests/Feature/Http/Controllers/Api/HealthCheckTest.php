@@ -2,8 +2,6 @@
 
 namespace Tests\Feature\Http\Controllers\Api;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -20,7 +18,7 @@ class HealthCheckTest extends TestCase
         $response->assertOk();
         $response->assertExactJson([
             'status' => 'ok',
-            'message' => 'Chirp chirp!'
+            'message' => 'Chirp chirp!',
         ]);
     }
 }

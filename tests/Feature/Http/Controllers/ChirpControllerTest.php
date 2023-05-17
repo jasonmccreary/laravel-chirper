@@ -2,23 +2,14 @@
 
 namespace Tests\Feature\Http\Controllers;
 
-use App\Events\ChirpCreated;
 use App\Http\Requests\SaveChirp;
 use App\Models\Chirp;
 use App\Models\User;
 use App\Notifications\NewChirp;
-use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\Wormhole;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Notification;
-use Illuminate\Support\Facades\Process;
-use Illuminate\Support\Sleep;
 use JMac\Testing\Traits\AdditionalAssertions;
-use PHPUnit\Framework\Attributes\Group;
 use PHPUnit\Framework\Attributes\Test;
 use Tests\TestCase;
 
@@ -50,7 +41,6 @@ class ChirpControllerTest extends TestCase
         Notification::assertSentTo($other, NewChirp::class);
         Notification::assertNothingSentTo($user);
     }
-
 
     #[Test]
     public function index_displays_view_with_recent_chirps(): void
@@ -117,7 +107,7 @@ class ChirpControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $chirp = Chirp::factory()->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $response = $this->actingAs($user)
@@ -140,13 +130,12 @@ class ChirpControllerTest extends TestCase
         $response->assertForbidden();
     }
 
-
     #[Test]
     public function update_saves_a_new_chirp(): void
     {
         $user = User::factory()->create();
         $chirp = Chirp::factory()->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $message = $this->faker->sentence();
@@ -179,7 +168,7 @@ class ChirpControllerTest extends TestCase
     {
         $user = User::factory()->create();
         $chirp = Chirp::factory()->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $response = $this->actingAs($user)
