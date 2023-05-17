@@ -6,7 +6,7 @@ use App\Http\Requests\SaveChirp;
 use App\Models\Chirp;
 use App\Models\User;
 use App\Notifications\NewChirp;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Facades\Notification;
 use JMac\Testing\Traits\AdditionalAssertions;
@@ -18,7 +18,7 @@ use Tests\TestCase;
  */
 class ChirpControllerTest extends TestCase
 {
-    use DatabaseTransactions, WithFaker, AdditionalAssertions;
+    use RefreshDatabase, WithFaker, AdditionalAssertions;
 
     #[Test]
     public function store_sends_notification_for_new_chirp_to_other_users(): void
